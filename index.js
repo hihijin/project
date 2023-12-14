@@ -1,11 +1,10 @@
-var http = require("http");
-var fs = require("fs");
-var app = http.createServer(function (request, response) {
-  var url = request.url;
-  if (request.url == "/") {
-    url = "/index.html";
-  }
-  response.writeHead(200);
-  response.end(fs.readFileSync(__dirname + url));
+const http = require("http");
+const express = require("express");
+const app = express();
+const server = http.createServer(app);
+
+app.get("/", (req, res) => {
+  res.send("Hello World!");
 });
-app.listen(3000);
+
+server.listen(3000);
